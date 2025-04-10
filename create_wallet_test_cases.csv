@@ -1,0 +1,41 @@
+TC ID,Title,Description,Steps,Expected Result,Priority
+TC001,Verify welcome title and subtitle,Validate that the title and subtitle are correctly displayed on the welcome screen.,Launch app,Title and subtitle text should match design spec,High
+TC002,Verify Create Wallet button visibility,Check if 'Create new wallet' button is visible and clickable.,Launch app,'Create new wallet' button should be visible and clickable,High
+TC003,Verify Already Have Wallet button,Ensure 'I already have a wallet' button is present and functional.,Launch app,'I already have a wallet' should be visible and clickable,High
+TC004,Verify TOS and Privacy Policy links,Ensure Terms of Service and Privacy Policy links are visible.,Launch app,Both links should be displayed,Medium
+TC005,Test Create Wallet button functionality,Check if tapping 'Create new wallet' navigates to the passcode screen.,Tap 'Create new wallet',Passcode screen should appear,High
+TC006,Test Already Have Wallet flow,Ensure 'I already have a wallet' redirects to the import screen.,Tap 'I already have a wallet',Import wallet screen should appear,Medium
+TC007,Test TOS and Privacy Policy redirection,Check that links redirect to the appropriate web pages.,Tap on links,TOS and Privacy Policy pages should load,Medium
+TC008,Verify Passcode screen title,Ensure the Passcode screen title is displayed correctly.,Navigate to Passcode screen,'Passcode' should be the title,High
+TC009,Verify 6-digit input boxes,Ensure six passcode boxes are shown.,Navigate to Passcode screen,Six input boxes should be present,High
+TC010,Verify number pad display,Check the number pad is visible and functional.,Navigate to Passcode screen,Number pad 0-9 should be displayed,High
+TC011,Enter fewer than 6 digits,Try submitting with <6 digits.,Enter 4 digits,User should not proceed,High
+TC012,Enter valid 6-digit passcode,Enter complete passcode and verify navigation.,Enter 6 digits,Should navigate to wallet options screen,High
+TC013,Invalid passcode format,Test if non-numeric or invalid inputs are rejected.,Enter letters or special chars,Input should be rejected,Medium
+TC014,Back button behavior,Test back navigation from passcode screen.,Tap back,Should return to welcome screen,Medium
+TC015,Verify wallet option types,Ensure 'Secret phrase' and 'Swift (Beta)' options are visible.,Navigate to wallet options screen,Both options should be displayed,Medium
+TC016,Verify Recommended label,Check if 'Secret phrase' is marked recommended.,Observe UI,'Recommended' label should be on Secret Phrase,Low
+TC017,Check 'Create' buttons visibility,Ensure both Create buttons are visible.,On wallet type screen,Buttons under both options should be visible,Medium
+TC018,Select Secret Phrase flow,Tap on Create under Secret Phrase.,Tap 'Create' on Secret Phrase,Next screen (backup/seed phrase) should load,High
+TC019,Select Swift Wallet flow,Tap on Create under Swift.,Tap 'Create' on Swift,Next setup screen should load,Medium
+TC020,Tap Show Details,Test expansion of details section.,Tap Show Details,Details should expand or show more info,Low
+TC021,Back navigation check,Tap back from wallet type screen.,Tap back,Should go back to passcode screen,Medium
+TC022,Verify Face ID prompt,Check that Face ID prompt appears with correct text.,Proceed past wallet type,Prompt should ask to allow Face ID,Medium
+TC023,Verify Face ID buttons,Ensure 'Allow' and 'Don't Allow' are visible.,Observe Face ID prompt,Both buttons should appear,Medium
+TC024,Accept Face ID,Tap Allow on Face ID prompt.,Tap 'Allow',Face ID setup should proceed,Medium
+TC025,Decline Face ID,Tap Don't Allow on Face ID prompt.,Tap 'Don't Allow',Fallback method should activate,Medium
+TC026,Face ID prompt repeat prevention,Ensure prompt doesn't reappear repeatedly.,Proceed again,Prompt should not repeat,Low
+TC027,Verify notification prompt title,Check title text 'Keep up with the market'.,Observe prompt,Text should match design,Low
+TC028,Check prompt buttons,"Verify 'Enable' and 'Skip, I’ll do it later' buttons are visible.",Observe prompt,Both buttons visible,Low
+TC029,Dismiss prompt via X,Tap X icon to dismiss prompt.,Tap X,Prompt should close,Low
+TC030,Enable notifications,Tap Enable and grant notification permission.,Tap Enable,Permission request triggered,Low
+TC031,Skip notifications,Tap Skip and check flow continues.,"Tap 'Skip, I’ll do it later'",User proceeds to next screen,Low
+TC032,Test X vs Skip behavior,Check if X behaves like Skip or not.,Compare X and Skip actions,Both should result in same flow,Low
+TC033,Launch offline,Test app behavior with no internet.,"Turn off network, launch app",App should handle gracefully,Medium
+TC034,App kill and resume,Kill app mid-flow and reopen.,"Kill mid-setup, relaunch",Should resume or restart as expected,High
+TC035,Incorrect passcode confirm,"If confirm screen exists, test mismatch entry.","Enter 123456, then 654321",Error message should show,High
+TC036,No Face ID on device,Check flow when Face ID is unavailable.,Use emulator or unsupported device,Fallback method should activate,Medium
+TC037,Orientation change,Test UI on screen rotation.,Rotate screen at each step,UI should remain stable,Low
+TC038,Accessibility audit,Test screen reader and high contrast mode.,Enable accessibility tools,App should support accessibility,Low
+TC039,Localization check,Check labels and layout in other languages.,Change device language,UI should adapt,Medium
+TC040,Analytics event tracking,Verify events are fired at key interactions.,Use Charles Proxy/Firebase Debug,Correct events should trigger,Medium
