@@ -14,7 +14,7 @@ A mobile automation testing framework built with Appium, Selenium, and TestNG fo
 
 1. Clone the repository:
    ```
-   git clone https://github.com/yourusername/sample-mobile-framework.git
+   git clone https://github.com/piyushkr0509/TrustWallet-mobile-framework-main.git
    cd sample-mobile-framework
    ```
 
@@ -50,6 +50,23 @@ mvn test -Dtest=CreateWalletTest
 ```
 
 ## Configuration
+
+### Device Configuration
+
+The framework is configured to test on Android devices. To configure your device settings, update the capabilities in `DriverUtils.java`:
+
+```java
+// Basic device settings
+capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
+capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "Android Emulator"); // Change to your device name
+capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, "13"); // Change to your Android version
+capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "UiAutomator2");
+
+// Optional settings
+capabilities.setCapability("noReset", true); // Prevents app data reset between sessions
+```
+
+### App Configuration
 
 The framework is configured to test the Trust Wallet application. To test a different app, update the capabilities in `DriverUtils.java`:
 

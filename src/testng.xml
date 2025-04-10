@@ -3,7 +3,7 @@
     <test name="Test">
         <parameter name="platformName" value="Android"/>
         <classes>
-            <class name="tests.SampleTest"/>
+            <class name="CreateWalletTest.java"/>
         </classes>
     </test>
 </suite>

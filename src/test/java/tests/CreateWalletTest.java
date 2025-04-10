@@ -6,7 +6,7 @@ import pages.WelcomePage;
 
 public class CreateWalletTest extends BaseTest {
 
-    @Test
+    @Test(description = "Test Create Wallet Flow")
     public void testCreateWalletFlow() throws InterruptedException {
         WelcomePage welcomePage = new WelcomePage();
 
