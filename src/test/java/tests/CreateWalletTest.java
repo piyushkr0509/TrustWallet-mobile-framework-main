@@ -6,13 +6,15 @@ import pages.WelcomePage;
 
 public class CreateWalletTest extends BaseTest {
 
-    @Test(description = "Test Create Wallet Flow")
-    public void testCreateWalletFlow() throws InterruptedException {
+    @Test
+    public void testFullCreateWalletFlow() {
         WelcomePage welcomePage = new WelcomePage();
 
-        Assert.assertTrue(welcomePage.isCreateWalletButtonVisible(), "Create Wallet button is not visible");
         welcomePage.clickCreateWalletButton();
-
-        System.out.println("Clicked on Create Wallet button successfully.");
+        welcomePage.enterPasscode("123456");
+        welcomePage.selectSecretPhraseWallet();
+        welcomePage.confirmSeedPhraseBackup();
+        Assert.assertTrue(welcomePage.isDashboardVisible(), "Dashboard is not visible after wallet creation.");
+        System.out.println("✅ Wallet created and dashboard is visible.");
     }
 }

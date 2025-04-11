@@ -1,87 +1,149 @@
-# Sample Mobile Framework
 
-A mobile automation testing framework built with Appium, Selenium, and TestNG for Android applications.
+# 📱 Sample Mobile Automation Framework – Trust Wallet Flow
 
-## Prerequisites
+This is a test automation framework built using **Appium + Java + TestNG** to automate the Trust Wallet mobile app's "Create Wallet" flow.
 
-- Java 8 or higher
-- Maven 3.6 or higher
-- Android SDK
-- Appium Server 2.0 or higher
-- Android device or emulator
+---
 
-## Setup
+## ✅ Features
 
-1. Clone the repository:
-   ```
-   git clone https://github.com/piyushkr0509/TrustWallet-mobile-framework-main.git
-   cd sample-mobile-framework
-   ```
+- Automates full wallet creation flow:
+  - Clicks "Create New Wallet"
+  - Enters 6-digit passcode
+  - Selects wallet type (Secret Phrase)
+  - Mocks seed phrase confirmation
+  - Verifies successful navigation to Dashboard
+- Built with **Page Object Model (POM)** design pattern
+- Uses **@AndroidFindBy** for clean and readable element management
+- Compatible with **TestNG** for scalable test execution
+- Supports real devices and emulators via Appium
 
-2. Install dependencies:
-   ```
-   mvn clean install
-   ```
+---
 
-3. Start Appium server:
-   ```
-   appium
-   ```
+## 🧠 Algorithm Used in the Framework
 
-4. Connect an Android device or start an emulator
+### 1. Page Object Model (POM)
+Each screen of the app is abstracted into a class with elements and user actions:
+- WelcomePage
+- Passcode entry (via `driver.pressKey()`)
+- Wallet type selection
+- Seed phrase confirmation
+- Dashboard assertion
 
-## Project Structure
+This encapsulates UI logic and separates it from test logic.
 
-- `src/main/java/pages/` - Page object classes
-- `src/main/java/utils/` - Utility classes including driver setup
-- `src/test/java/tests/` - Test classes
-- `src/test/resources/` - Test configuration files
+### 2. Flow Control
+- **Sequential user simulation** of each screen interaction
+- Assertions after major steps for validation
+- Retry/wait logic using WebDriverWait for reliable execution
 
-## Running Tests
+---
 
-Execute all tests:
+## 📂 Folder Structure
+
 ```
-mvn test
-```
-
-Run a specific test class:
-```
-mvn test -Dtest=CreateWalletTest
-```
-
-## Configuration
-
-### Device Configuration
-
-The framework is configured to test on Android devices. To configure your device settings, update the capabilities in `DriverUtils.java`:
-
-```java
-// Basic device settings
-capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
-capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "Android Emulator"); // Change to your device name
-capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, "13"); // Change to your Android version
-capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "UiAutomator2");
-
-// Optional settings
-capabilities.setCapability("noReset", true); // Prevents app data reset between sessions
+src
+├── main
+│   └── java
+│       └── pages         # Page classes with @AndroidFindBy
+│       └── utils         # Driver management (DriverUtils)
+├── test
+│   └── java
+│       └── tests         # TestNG test classes
 ```
 
-### App Configuration
+---
 
-The framework is configured to test the Trust Wallet application. To test a different app, update the capabilities in `DriverUtils.java`:
+## ⚙️ Setup Instructions
+
+### 1. Install Dependencies
+Make sure you have:
+- Java 11+
+- Maven
+- Appium server (CLI or Appium Desktop)
+- Android Emulator or Device with Trust Wallet installed
+
+### 2. Start Appium Server
+```bash
+appium server -p 4725 -a 127.0.0.1 -pa /wd/hub
+```
+
+### 3. Run Tests
+```bash
+mvn clean test
+```
+
+---
+
+## 🧪 Test Case Automated
+
+| TC ID  | Description                              |
+|--------|------------------------------------------|
+| TC001  | Full Create Wallet flow with passcode    |
+| TC002  | Validate Dashboard appears post-creation |
+
+---
+
+## 🧑‍💻 Author
+
+Created by a QA Engineer using Appium Java Client `8.x` and TestNG.
+
+---
+
+## 📌 Notes
+
+- Appium inspector may fail on some screens (secure flag) – handled with key events.
+- Designed for extendibility (e.g., Face ID, Notifications, Import Wallet)
+
+
+---
+
+## 🔧 App Launch Configuration
+
+This framework uses **Appium Desired Capabilities** to launch the app directly using the app’s **package** and **main activity** instead of reinstalling an APK every time.
+
+### ✍️ To change the app package or activity:
+Go to `DriverUtils.java` and update:
 
 ```java
 capabilities.setCapability("appPackage", "com.wallet.crypto.trustapp");
 capabilities.setCapability("appActivity", "com.wallet.crypto.trustapp.ui.app.AppActivity");
 ```
 
-## Dependencies
+You can find these values using:
+```bash
+adb shell dumpsys window | grep -E 'mCurrentFocus|mFocusedApp'
+```
 
-- Selenium: 4.11.0
-- Appium Java Client: 8.3.0
-- TestNG: 7.8.0
-- Commons IO: 2.7
+---
 
-## License
+## 📱 Changing Device or OS Version
 
-MIT
+To run tests on a different **Android version** or emulator/device:
+
+1. Connect your physical device or start an emulator:
+   ```bash
+   emulator -avd Pixel_API_33
+   ```
+
+2. In `DriverUtils.java`, update:
+```java
+capabilities.setCapability("deviceName", "emulator-5554"); // or actual device name
+capabilities.setCapability("platformVersion", "13"); // or your device's OS version
+```
+
+3. To list devices:
+```bash
+adb devices
+```
+
+---
+
+## 🧪 Emulator vs Real Device
+
+| Property        | Emulator                      | Real Device                      |
+|----------------|-------------------------------|----------------------------------|
+| deviceName      | `emulator-5554`                | `Pixel_6`, `Samsung_Galaxy` etc. |
+| platformVersion | `13` or `14`                   | Match your real device version   |
+| Notes           | Ideal for CI or dry runs       | Required for biometric flows     |
+
